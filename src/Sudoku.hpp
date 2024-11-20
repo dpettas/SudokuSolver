@@ -129,36 +129,34 @@ inline std::ostream& operator<<(std::ostream& os, const Sudoku& puzzle){
 
   auto row = [](const Sudoku& puzzle, int i) -> std::string{
 
-    std::string out = "  ";
+    std::string out = "";
 
     for (int j = 0; j < 9; ++j){
       const int& value = puzzle.get(i,j);
+      if ( j % 3 == 0 ) out += "|";
       out += (value == 0) ? " " : std::to_string(value);
       out += " ";
     }
 
 
-    out[ 0] = '|';
-    out[10] = '|';
-    out[20] = '|';
-    out +=" |\n";
+    out += "|\n";
     return out;
   };
 
 
-  os << "+---------+---------+---------+\n";
+  os << "+------+------+------+\n";
   os << row(puzzle, 0);
   os << row(puzzle, 1);
   os << row(puzzle, 2);
-  os << "+---------+---------+---------+\n";
+  os << "+------+------+------+\n";
   os << row(puzzle, 3);
   os << row(puzzle, 4);
   os << row(puzzle, 5);
-  os << "+---------+---------+---------+\n";
+  os << "+------+------+------+\n";
   os << row(puzzle, 6);
   os << row(puzzle, 7);
   os << row(puzzle, 8);
-  os << "+---------+---------+---------+\n";
+  os << "+------+------+------+\n";
 
   return os;
 }
